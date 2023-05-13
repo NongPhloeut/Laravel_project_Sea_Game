@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Venue extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'venue_name',
+        'location',
+    ];
+
+    
+    public static function store($request,$id){
+       $venue = $request->only([
+            'venue_name',
+            'location',
+       ]);
+
+       $venue = self::updateOrCreate(['id'=>$id],$venue);
+       return $venue;
+    }
 }

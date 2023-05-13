@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,10 @@ Route::get('/users/{id}',[UserController::class,'show']);
 Route::post('/users',[UserController::class,'store']);
 Route::put('/users/{id}',[UserController::class,'update']);
 Route::delete('/users/{id}',[UserController::class,'distroy']);
+
+// venue
+Route::get('/venues',[VenueController::class,'index']);
+// Route::get('/users/{id}',[UserController::class,'show']);
+Route::post('/venues',[VenueController::class,'store']);
+// Route::put('/users/{id}',[UserController::class,'update']);
+// Route::delete('/users/{id}',[UserController::class,'distroy']);

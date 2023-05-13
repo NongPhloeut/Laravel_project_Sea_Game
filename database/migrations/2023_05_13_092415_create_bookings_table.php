@@ -16,12 +16,11 @@ return new class extends Migration
             $table->date('booking_date');
             $table->boolean('status')->default(0);
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('bookings')->onDelete('cascade');
-
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
         });
     }

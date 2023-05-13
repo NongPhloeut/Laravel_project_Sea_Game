@@ -31,7 +31,8 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|min:6|max:255',
             'email' =>['required|email|min:6|max:255',Rule::unique(User::class,'email')->ignore($this->id)],
-            'password' => 'required|min:6|max:255'
+            'password' => 'required|min:6|max:255',
+            'phone_number' => 'required|min:10|max:10'
         ];
     }
 }
