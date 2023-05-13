@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreBookingRequest extends FormRequest
 {
@@ -14,6 +16,11 @@ class StoreBookingRequest extends FormRequest
         return false;
     }
 
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
+    }
     /**
      * Get the validation rules that apply to the request.
      *

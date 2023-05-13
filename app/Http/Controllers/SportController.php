@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sport;
 use Illuminate\Http\Request;
 
 class SportController extends Controller
@@ -19,7 +20,9 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sports = Sport::store($request);
+
+        return response()->json(['Create cuccessfully'=>true,"sport"=>$sports],202);
     }
 
     /**

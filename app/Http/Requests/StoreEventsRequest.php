@@ -28,7 +28,8 @@ class StoreEventsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "venue_name"=>'required',
+            "location"=>'required',
         ];
     }
 }

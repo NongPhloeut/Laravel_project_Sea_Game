@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -44,17 +45,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function store($request,$id = null){
-        $user = $request->only([
+    public static function store($request,$id = null)
+    {
+        $users = $request->only([
             'name',
             'email',
             'password',
-            'phone_number'
+            'phone_number',
         ]);
 
         $users['password'] = Hash::make($request->password);
-
-        $user = self::updateOrCreate(['id'=>$id],$user);
-        return $user;
+       
+        $users = self::updateOrcreate(['id'=>$id],$users);
+        return $users;
+    }
+    // user has many booking
+    public function bookings():HasMany{
+        return $this->hasMany(Booking::class);
     }
 }

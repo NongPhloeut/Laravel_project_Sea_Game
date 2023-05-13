@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
-class EventsController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,9 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $events = Event::store($request);
+        $tickets = Ticket::store($request);
 
-        return response()->json(['Create cuccessfully'=>true,"events"=>$events],202);
+        return response()->json(['Create cuccessfully'=>true,"tickets"=>$tickets],202);
     }
 
     /**

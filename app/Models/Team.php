@@ -2,10 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'team_name',
+        'description',
+        'event_sport_id'
+    ];
+
+    public static function store($request,$id=null){
+        $teams = $request->only([
+            'team_name',
+            'description',
+            'event_sport_id'
+        ]);
+
+        $teams = self::updateOrCreate(['id'=>$id],$teams);
+        return $teams;
+    }
 }

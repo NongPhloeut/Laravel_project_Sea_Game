@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -19,7 +20,9 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bookings = Booking::store($request);
+
+        return response()->json(['Create cuccessfully'=>true,"bookings"=>$bookings],202);
     }
 
     /**

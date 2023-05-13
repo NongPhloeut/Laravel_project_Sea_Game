@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,19 +14,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-
-        return response()->json(['Create cuccessfully'=>true,'data'=>$user],202);
+        $users = User::all();
+        $user = UserResource::collection($users);
+        return response()->json(['Create cuccessfully'=>true,'users'=>$user],202);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store($request)
+    public function store(StoreUserRequest $request)
     {
-        $user = User::store($request);
+ 
+        $users = User::store($request);
 
-        return response()->json(['Gets cuccessfully'=>true,'data'=>$user],202);
+        return response()->json(['Gets cuccessfully'=>true,'users'=>$users],202);
     }
 
     /**
@@ -43,9 +45,9 @@ class UserController extends Controller
      */
     public function update($request, string $id)
     {
-        $user = User::store($request,$id);
+        // $user = User::store($request,$id);
 
-        return response()->json(['Update cuccessfully'=>true,'data'=>$user],202);
+        // return response()->json(['Update cuccessfully'=>true,'data'=>$user],202);
     }
 
     /**

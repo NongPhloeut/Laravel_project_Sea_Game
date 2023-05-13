@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -19,7 +20,9 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $teams = Team::store($request);
+
+        return response()->json(['Create cuccessfully'=>true,"teams"=>$teams],202);
     }
 
     /**

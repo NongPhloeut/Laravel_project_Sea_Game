@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\EventsController;
+use App\Http\Controllers\EventSportController;
+use App\Http\Controllers\SportController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenueController;
 use Illuminate\Http\Request;
@@ -32,3 +38,36 @@ Route::get('/venues',[VenueController::class,'index']);
 Route::post('/venues',[VenueController::class,'store']);
 // Route::put('/users/{id}',[UserController::class,'update']);
 // Route::delete('/users/{id}',[UserController::class,'distroy']);
+
+// sport
+Route::get('/sports',[SportController::class,'index']);
+// Route::get('/users/{id}',[SportController::class,'show']);
+Route::post('/sports',[SportController::class,'store']);
+// Route::put('/users/{id}',[SportController::class,'update']);
+// Route::delete('/users/{id}',[SportController::class,'distroy']);
+
+//team
+Route::get('/teams',[TeamController::class,'index']);
+// Route::get('/users/{id}',[SportController::class,'show']);
+Route::post('/teams',[TeamController::class,'store']);
+
+//event
+Route::get('/events',[EventsController::class,'index']);
+// Route::get('/users/{id}',[SportController::class,'show']);
+Route::post('/events',[EventsController::class,'store']);
+    
+//bookings
+Route::get('/bookings',[BookingController::class,'index']);
+// Route::get('/users/{id}',[SportController::class,'show']);
+Route::post('/bookings',[BookingController::class,'store']);
+
+//event sport
+Route::get('/event_sports',[EventSportController::class,'index']);
+// Route::get('/users/{id}',[EventSportController::class,'show']);
+Route::post('/event_sports',[EventSportController::class,'store']);
+
+
+//ticket
+Route::get('/tickets',[TicketController::class,'index']);
+// Route::get('/users/{id}',[TicketController::class,'show']);
+Route::post('/tickets',[TicketController::class,'store']);

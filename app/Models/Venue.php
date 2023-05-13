@@ -15,7 +15,7 @@ class Venue extends Model
     ];
 
     
-    public static function store($request,$id){
+    public static function store($request,$id=null){
        $venue = $request->only([
             'venue_name',
             'location',

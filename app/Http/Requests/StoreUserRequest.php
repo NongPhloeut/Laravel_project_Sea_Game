@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -14,11 +15,11 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
+        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 
     /**
@@ -30,7 +31,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:6|max:255',
-            'email' =>['required|email|min:6|max:255',Rule::unique(User::class,'email')->ignore($this->id)],
+            'email' =>['required','email',Rule::unique(User::class,'email')->ignore($this->id)],
             'password' => 'required|min:6|max:255',
             'phone_number' => 'required|min:10|max:10'
         ];

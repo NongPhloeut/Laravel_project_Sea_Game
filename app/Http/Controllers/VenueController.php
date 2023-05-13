@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Venue;
 use Illuminate\Http\Request;
 
 class VenueController extends Controller
@@ -19,7 +20,8 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venue = Venue::store($request);
+        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
     }
 
     /**
