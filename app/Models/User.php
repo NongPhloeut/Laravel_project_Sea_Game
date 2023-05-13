@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function store($request,$id = null){
+        $user = $request->only([
+            'name',
+            'email',
+            'password'
+        ]);
+
+        $user = self::updateOrCreate(['id'=>$id],$user);
+        return $user;
+    }
 }
