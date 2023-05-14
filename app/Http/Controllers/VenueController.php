@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\VenueResources;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class VenueController extends Controller
      */
     public function index()
     {
-        //
+        $venue = Venue::all();
+        $venue = VenueResources::collection($venue);
+        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        
     }
 
     /**

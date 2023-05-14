@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EventsResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,14 @@ class EventsController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+
+        $events = Event::where('event_name','like','%',request('event_name').'%')->get();
+
+        $events = EventsResource::collection($events);
+
+        return response()->json(['Get cuccessfully'=>true,"events"=>$events],202);
+
     }
 
     /**

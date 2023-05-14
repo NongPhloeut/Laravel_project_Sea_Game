@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Booking extends Model
 {
@@ -14,7 +17,7 @@ class Booking extends Model
         'booking_date',
         'status',
         'user_id',
-        'event_id'
+        'event_id',
     ];
 
     public static function store($request,$id=null){
@@ -22,7 +25,7 @@ class Booking extends Model
             'booking_date',
             'status',
             'user_id',
-            'event_id'
+            'event_id',
         ]);
 
         $bookings = self::updateOrCreate(['id'=>$id],$bookings);
@@ -31,5 +34,10 @@ class Booking extends Model
 /// booking belong to a uesr 
     public function user():BelongsTo{
         return $this->belongsTo(User::class);
+    }
+
+    /// a event can have multiple tickets
+    public function bookingEvent():BelongsToMany{
+        return $this->belongsToMany(Event::class);
     }
 }

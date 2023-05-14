@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ticket extends Model
 {
@@ -27,5 +28,14 @@ class Ticket extends Model
 
        $tickets = self::updateOrCreate(['id'=>$id],$tickets);
        return $tickets;
+    }
+
+    public function booking():BelongsTo{
+        return $this->belongsTo(Booking::class);
+    }
+
+    ///
+    public function ticketHasBooking():BelongsTo{
+        return $this->belongsTo(Event::class);
     }
 }

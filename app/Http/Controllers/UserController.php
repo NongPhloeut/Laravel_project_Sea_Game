@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\ShowUserResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class UserController extends Controller
     {
  
         $users = User::store($request);
-
+       
         return response()->json(['Gets cuccessfully'=>true,'users'=>$users],202);
     }
 
@@ -36,7 +37,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
-
+        $user = new ShowUserResource($user);
         return response()->json(['Create cuccessfully'=>true,'data'=>$user],202);
     }
 
@@ -45,9 +46,9 @@ class UserController extends Controller
      */
     public function update($request, string $id)
     {
-        // $user = User::store($request,$id);
+        $user = User::store($request,$id);
 
-        // return response()->json(['Update cuccessfully'=>true,'data'=>$user],202);
+        return response()->json(['Update cuccessfully'=>true,'data'=>$user],202);
     }
 
     /**
@@ -55,8 +56,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        // $user = User::find($id);
-        // $user->delete();
-        // return response()->json(['Delete cuccessfully'=>true,'data'=>$user],202);
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['Delete cuccessfully'=>true,'data'=>$user],202);
     }
 }

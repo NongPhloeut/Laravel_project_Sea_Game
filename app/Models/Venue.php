@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Venue extends Model
 {
@@ -23,5 +24,9 @@ class Venue extends Model
 
        $venue = self::updateOrCreate(['id'=>$id],$venue);
        return $venue;
+    }
+// one venue cna has many events
+    public function events():HasMany{
+        return $this->hasMany(Event::class);
     }
 }

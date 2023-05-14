@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookingResource;
+use App\Http\Resources\ShowBookingResource;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,11 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::all();
+        $bookings = BookingResource::collection($bookings);
+
+        return response()->json(['Get bookings cuccessfully'=>true,'Bookings'=>$bookings],202);
+
     }
 
     /**
@@ -22,6 +28,13 @@ class BookingController extends Controller
     {
         $bookings = Booking::store($request);
 
+        // $bookings
+        $bookings->ticketBooking()->create([
+            'ticket_number'=>request('ticket_number'),
+            'ticket_price'=>request('ticket_price'),
+            'event_id'=>request('event_id'),
+        ]);
+
         return response()->json(['Create cuccessfully'=>true,"bookings"=>$bookings],202);
     }
 
@@ -30,7 +43,11 @@ class BookingController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $booking = Booking::find($id);
+
+        $booking = new ShowBookingResource($booking);
+
+        return response()->json(['Show cuccessfully'=>true,"bookings"=>$booking],202);
     }
 
     /**
@@ -46,6 +63,9 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking = Booking::find($id);
+        $booking->delete();
+
+        return response()->json(['Delete cuccessfully'=>true,"bookings"=>$booking],202);
     }
 }

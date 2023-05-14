@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ShowTicketResources;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,9 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket = new ShowTicketResources($ticket);
+        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
     }
 
     /**

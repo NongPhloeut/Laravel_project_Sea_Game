@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone_number',
+        // 'phone_number',
     ];
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
             'name',
             'email',
             'password',
-            'phone_number',
+            // 'phone_number',
         ]);
 
         $users['password'] = Hash::make($request->password);
@@ -62,5 +62,9 @@ class User extends Authenticatable
     // user has many booking
     public function bookings():HasMany{
         return $this->hasMany(Booking::class);
+    }
+    // user has many events
+    public function events():HasMany{
+        return $this->hasMany(Event::class);
     }
 }
