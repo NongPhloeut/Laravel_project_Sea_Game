@@ -23,4 +23,9 @@ class Sport extends Model
         $sports = self::updateOrCreate(['id'=>$id],$sports);
         return $sports;
     }
-}
+
+    /// belong to many event sport
+    public function events(){
+        return $this->belongsToMany(Event::class,'event_sports');
+    }
+} 

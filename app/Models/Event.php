@@ -17,7 +17,8 @@ class Event extends Model
         'match_date',
         'match_time',
         'user_id',
-        'venue_id'
+        'venue_id',
+        'sport_id'
     ];
 
     public static function store($request,$id=null){
@@ -26,7 +27,9 @@ class Event extends Model
             'match_date',
             'match_time',
             'user_id',
-            'venue_id'
+            'venue_id',
+
+            'sport_id'
         ]);
 
         $events = self::updateOrCreate(['id'=>$id],$events);
@@ -46,5 +49,14 @@ class Event extends Model
     public function venue():BelongsToMany{
         return $this->belongsToMany(Venue::class);
     }
+    
+    /// belong to many for event_sport
+    public function sports(){
+        return $this->belongsToMany(Sport::class,'event_sports');
+    }
 
+    public function addSport($sportIds)
+    {
+        $this->sports()->sync($sportIds);
+    }
 }

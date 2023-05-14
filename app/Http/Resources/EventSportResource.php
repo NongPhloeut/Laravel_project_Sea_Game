@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BookingResource extends JsonResource
+class EventSportResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class BookingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'booking_id'=>$this->id,
-            'booking_date'=>$this->booking_date,
-            'ticketBooking'=>$this->ticketBooking,
-            // 'event'=>$this->event,
-            // 'event'=>$this->ticketHasBooking,
+            'event_sport_id'=>$this->id,
+            'teams'=>$this->teams,
         ];
     }
 }

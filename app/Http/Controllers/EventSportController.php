@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EventSportResource;
 use App\Models\EventSport;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,11 @@ class EventSportController extends Controller
      */
     public function index()
     {
-        //
+        $eventSport = EventSport::all();
+
+        $eventSport = EventSportResource::collection($eventSport);
+
+        return response()->json(['Get cuccessfully'=>true,'teamsInEvent'=>$eventSport],202);
     }
 
     /**

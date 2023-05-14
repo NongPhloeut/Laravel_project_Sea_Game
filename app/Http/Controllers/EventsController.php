@@ -14,8 +14,8 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::all();
-
-        $events = Event::where('event_name','like','%',request('event_name').'%')->get();
+        $eventsName = request('event_name');
+        $events = Event::where('event_name','like','%'.$eventsName.'%')->get();
 
         $events = EventsResource::collection($events);
 
@@ -28,7 +28,17 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $events = Event::store($request);
+        // $events = Event::store($request);
+
+        // $events->sports()->create([
+        //     'sport_name'=>request('sport_name'),
+        //     'description'=>request('description'),
+        // ]);
+
+        $events = Event::find(1);
+        $sportIds = [1, 2, 3];
+        
+        $events->addSport($sportIds);
 
         return response()->json(['Create cuccessfully'=>true,"events"=>$events],202);
     }

@@ -22,6 +22,9 @@ class SportController extends Controller
     {
         $sports = Sport::store($request);
 
+        $sports->events()->create([
+            'event_id'=>request('event_id'),
+        ]);
         return response()->json(['Create cuccessfully'=>true,"sport"=>$sports],202);
     }
 

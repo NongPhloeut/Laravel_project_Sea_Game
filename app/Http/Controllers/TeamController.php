@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TeamResource;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::all();
+        $teams = TeamResource::collection($teams);
+
+        return response()->json(['Create cuccessfully'=>true,"teams"=>$teams],202);
     }
 
     /**

@@ -31,7 +31,7 @@ class Booking extends Model
         $bookings = self::updateOrCreate(['id'=>$id],$bookings);
         return $bookings;
     }
-/// booking belong to a uesr 
+    /// booking belong to a uesr 
     public function user():BelongsTo{
         return $this->belongsTo(User::class);
     }
@@ -39,5 +39,10 @@ class Booking extends Model
     /// a event can have multiple tickets
     public function bookingEvent():BelongsToMany{
         return $this->belongsToMany(Event::class);
+    }
+    
+    // one booking one ticket 
+    public function ticketBooking():HasOne{
+        return $this->hasOne(Ticket::class);
     }
 }

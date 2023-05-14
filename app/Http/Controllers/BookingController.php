@@ -28,7 +28,7 @@ class BookingController extends Controller
     {
         $bookings = Booking::store($request);
 
-        // $bookings
+        // $bookings and create ticket
         $bookings->ticketBooking()->create([
             'ticket_number'=>request('ticket_number'),
             'ticket_price'=>request('ticket_price'),
