@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ShowVenueResources;
 use App\Http\Resources\VenueResources;
 use App\Models\Venue;
 use Illuminate\Http\Request;
@@ -33,7 +34,9 @@ class VenueController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $venue = Venue::find($id);
+        $venue = new ShowVenueResources($venue);
+        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
     }
 
     /**
@@ -41,7 +44,8 @@ class VenueController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $venue = Venue::store($request,$id);
+        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
     }
 
     /**
@@ -49,6 +53,9 @@ class VenueController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $venue = Venue::find($id);
+        $venue->delete();
+
+        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
     }
 }

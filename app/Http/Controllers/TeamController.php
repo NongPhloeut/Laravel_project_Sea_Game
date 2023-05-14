@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTeamRequest;
+use App\Http\Resources\ShowTeamResource;
 use App\Http\Resources\TeamResource;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -22,7 +24,7 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
         $teams = Team::store($request);
 
@@ -34,7 +36,10 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $teams = Team::find($id);
+        $teams = new ShowTeamResource($teams);
+
+        return response()->json(['Show cuccessfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -42,7 +47,9 @@ class TeamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $teams = Team::store($request,$id);
+
+        return response()->json(['Update cuccessfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -50,6 +57,9 @@ class TeamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $teams = Team::find($id);
+        $teams->delete();
+
+        return response()->json(['Delete cuccessfully'=>true,"teams"=>$teams],202);
     }
 }

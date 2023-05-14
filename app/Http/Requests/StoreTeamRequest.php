@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreBookingRequest extends FormRequest
+class StoreTeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,11 +16,11 @@ class StoreBookingRequest extends FormRequest
         return true;
     }
 
-
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,13 +29,9 @@ class StoreBookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "booking_date"=>"required",
-            "status"=>"required",
-            "user_id"=>"required",
-            "event_id"=>"required",
-            
-            "ticket_number"=>"required|unique:tickets",
-            "ticket_price"=>"required",
+            "team_name"=>"required|unique:teams",
+            "description"=>"required",
+            "event_sport_id"=>"required"
         ];
     }
 }

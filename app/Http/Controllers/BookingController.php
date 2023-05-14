@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookingRequest;
 use App\Http\Resources\BookingResource;
 use App\Http\Resources\ShowBookingResource;
 use App\Models\Booking;
@@ -24,7 +25,7 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBookingRequest $request)
     {
         $bookings = Booking::store($request);
 
@@ -55,7 +56,8 @@ class BookingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $bookings = Booking::store($request,$id);
+        return response()->json(['Show cuccessfully'=>true,"bookings"=>$bookings],202);
     }
 
     /**

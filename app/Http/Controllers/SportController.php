@@ -12,7 +12,11 @@ class SportController extends Controller
      */
     public function index()
     {
-        //
+        $eventSport = Sport::all();
+
+        // $eventSport = ::collection($eventSport);
+
+        return response()->json(['Get cuccessfully'=>true,'teamsInEvent'=>$eventSport],202);
     }
 
     /**

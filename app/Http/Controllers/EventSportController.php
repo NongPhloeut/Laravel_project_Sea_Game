@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\EventSportResource;
+use App\Http\Resources\ShowEventsResource;
 use App\Models\EventSport;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,11 @@ class EventSportController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $eventSport = EventSport::find($id);
+
+        $eventSport = new ShowEventsResource($eventSport);
+
+        return response()->json(['Get cuccessfully'=>true,'teamsInEvent'=>$eventSport],202); 
     }
 
     /**
@@ -43,7 +48,9 @@ class EventSportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $eventSport = EventSport::store($request,$id);
+
+        return response()->json(['Update cuccessfully'=>true,"event_sports"=>$eventSport],202);
     }
 
     /**
@@ -51,6 +58,10 @@ class EventSportController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $eventSport = EventSport::find($id);
+
+        $eventSport->delete();
+        
+        return response()->json(['Delete cuccessfully'=>true,"events"=>$eventSport],202); 
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\EventsResource;
+use App\Http\Resources\ShowEventsResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,11 @@ class EventsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $events = Event::find($id);
+
+        $events = new ShowEventsResource($events);
+
+        return response()->json(['Get cuccessfully'=>true,"events"=>$events],202);
     }
 
     /**
@@ -56,7 +61,9 @@ class EventsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $events = Event::store($request,$id);
+
+        return response()->json(['Create cuccessfully'=>true,"event_sports"=>$events],202);
     }
 
     /**
@@ -64,6 +71,11 @@ class EventsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $events = Event::find($id);
+
+        $events->delete();
+        
+        return response()->json(['Delete cuccessfully'=>true,"events"=>$events],202); 
     }
+
 }

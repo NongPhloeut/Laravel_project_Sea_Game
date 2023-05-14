@@ -15,6 +15,8 @@ class ShowBookingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'booking_id'=>$this->id,
+            'booking_date'=>$this->booking_date,
             'ticketBooking'=>$this->ticketBooking,
         ];
     }

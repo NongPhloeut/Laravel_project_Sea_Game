@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ShowTicketResources;
+use App\Http\Resources\TicketResources;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $ticket = Ticket::all();
+        $ticket = TicketResources::collection($ticket);
+        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
     }
 
     /**
@@ -41,7 +44,9 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ticket = Ticket::find($request,$id);
+        
+        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
     }
 
     /**
@@ -49,6 +54,9 @@ class TicketController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tickets = Ticket::find($id);
+        $tickets->delete();
+
+        return response()->json(['Create cuccessfully'=>true,"tickets"=>$tickets],202);
     }
 }

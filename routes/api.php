@@ -49,6 +49,7 @@ Route::delete('/sports/{id}',[SportController::class,'distroy']);
 //team
 Route::get('/teams',[TeamController::class,'index']);
 Route::get('/teams/{id}',[TeamController::class,'show']);
+Route::delete('/teams/{id}',[TeamController::class,'destroy']);
 Route::post('/teams',[TeamController::class,'store']);
 
 //event
