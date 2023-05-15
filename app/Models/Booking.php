@@ -21,6 +21,7 @@ class Booking extends Model
     ];
 
     public static function store($request,$id=null){
+
         $bookings = $request->only([
             'booking_date',
             'status',
@@ -36,9 +37,9 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
-    /// a event can have multiple tickets
-    public function bookingEvent():BelongsToMany{
-        return $this->belongsToMany(Event::class);
+    /// a event can have multiple booking
+    public function eventBooking():BelongsTo{
+        return $this->belongsTo(Event::class);
     }
     
     // one booking one ticket 

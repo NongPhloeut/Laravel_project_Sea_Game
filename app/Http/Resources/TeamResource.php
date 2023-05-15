@@ -17,8 +17,7 @@ class TeamResource extends JsonResource
         return [
             'team_id'=>$this->id,
             'team_name'=>$this->team_name,
-            // 'match 1'=>$this->eventSport->team,
-            // 'match 2'=>$this->eventSport->team, 
+            'sport'=>$this->sport, 
         ];
     }
 }

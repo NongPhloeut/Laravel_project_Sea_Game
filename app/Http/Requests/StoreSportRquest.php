@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreTeamRequest extends FormRequest
+class StoreSportRquest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,9 +29,7 @@ class StoreTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "team_name"=>"required",
-            "description"=>"required",
-            "sport_id"=>"required|unique:teams"
+            'sport_name'=>'required|unique:sports',
         ];
     }
 }

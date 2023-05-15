@@ -14,6 +14,11 @@ class ShowTeamResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'team_id'=>$this->id,
+            'team_name'=>$this->team_name,
+            'sport'=>new SportResource($this->sport), 
+        ];
+
     }
 }

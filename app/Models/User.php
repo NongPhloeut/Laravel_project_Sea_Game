@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        // 'phone_number',
+        'phone_number',
     ];
 
     /**
@@ -51,12 +51,12 @@ class User extends Authenticatable
             'name',
             'email',
             'password',
-            // 'phone_number',
+            'phone_number',
         ]);
 
         $users['password'] = Hash::make($request->password);
        
-        $users = self::updateOrcreate(['id'=>$id],$users);
+        $users = self::updateOrCreate(['id'=>$id],$users);
         return $users;
     }
     // user has many booking

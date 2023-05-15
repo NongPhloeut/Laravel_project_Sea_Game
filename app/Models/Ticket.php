@@ -33,9 +33,4 @@ class Ticket extends Model
     public function booking():BelongsTo{
         return $this->belongsTo(Booking::class);
     }
-
-    /////
-    public function ticketHasBooking():BelongsTo{
-        return $this->belongsTo(Event::class);
-    }
 }

@@ -35,6 +35,11 @@ class TicketController extends Controller
     public function show(string $id)
     {
         $ticket = Ticket::find($id);
+
+        // if($ticket == null){
+        //     return response()->json(['id not found'=>false],404);
+        // }
+
         $ticket = new ShowTicketResources($ticket);
         return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
     }

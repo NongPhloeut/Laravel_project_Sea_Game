@@ -17,7 +17,9 @@ class ShowBookingResource extends JsonResource
         return [
             'booking_id'=>$this->id,
             'booking_date'=>$this->booking_date,
-            'ticketBooking'=>$this->ticketBooking,
+            'ticket_booking'=>new TicketResources($this->ticketBooking),
+            'event_booking'=>new EventsResource($this->eventBooking),
+            'users'=>new UserResource($this->user),
         ];
     }
 }

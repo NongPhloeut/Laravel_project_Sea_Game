@@ -30,21 +30,21 @@ Route::get('/users',[UserController::class,'index']);
 Route::get('/users/{id}',[UserController::class,'show']);
 Route::post('/users',[UserController::class,'store']);
 Route::put('/users/{id}',[UserController::class,'update']);
-Route::delete('/users/{id}',[UserController::class,'distroy']);
+Route::delete('/users/{id}',[UserController::class,'destroy']);
 
 // venue
 Route::get('/venues',[VenueController::class,'index']);
 Route::get('/venue/{id}',[VenueController::class,'show']);
 Route::post('/venues',[VenueController::class,'store']);
 Route::put('/venues/{id}',[VenueController::class,'update']);
-Route::delete('/venues/{id}',[VenueController::class,'distroy']);
+Route::delete('/venues/{id}',[VenueController::class,'destroy']);
 
 // sport
 Route::get('/sports',[SportController::class,'index']);
-Route::get('/users/{id}',[SportController::class,'show']);
+Route::get('/sports/{id}',[SportController::class,'show']);
 Route::post('/sports',[SportController::class,'store']);
 Route::put('/sports/{id}',[SportController::class,'update']);
-Route::delete('/sports/{id}',[SportController::class,'distroy']);
+Route::delete('/sports/{id}',[SportController::class,'destroy']);
 
 //team
 Route::get('/teams',[TeamController::class,'index']);
@@ -55,7 +55,9 @@ Route::post('/teams',[TeamController::class,'store']);
 //event
 Route::get('/events',[EventsController::class,'index']);
 Route::get('/events/{id}',[EventsController::class,'show']);
+Route::put('/events/{id}',[EventsController::class,'update']);
 Route::post('/events',[EventsController::class,'store']);
+Route::delete('/events/{id}',[EventsController::class,'destroy']);
     
 //bookings
 Route::get('/bookings',[BookingController::class,'index']);

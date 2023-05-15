@@ -29,17 +29,7 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        // $events = Event::store($request);
-
-        // $events->sports()->create([
-        //     'sport_name'=>request('sport_name'),
-        //     'description'=>request('description'),
-        // ]);
-
-        $events = Event::find(1);
-        $sportIds = [1, 2, 3];
-        
-        $events->addSport($sportIds);
+        $events = Event::store($request);
 
         return response()->json(['Create cuccessfully'=>true,"events"=>$events],202);
     }

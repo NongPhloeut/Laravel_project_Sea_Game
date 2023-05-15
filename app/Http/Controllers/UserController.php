@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($request, string $id)
+    public function update(StoreUserRequest $request, string $id)
     {
         $user = User::store($request,$id);
 
@@ -57,6 +57,11 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id);
+    
+        if($user == null){
+            return response()->json(['id not found'=>false],404);
+        }
+
         $user->delete();
         return response()->json(['Delete cuccessfully'=>true,'data'=>$user],202);
     }

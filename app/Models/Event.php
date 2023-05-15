@@ -14,27 +14,14 @@ class Event extends Model
 
     protected $fillable = [
         'event_name',
+        'description',
         'match_date',
         'match_time',
         'user_id',
         'venue_id',
-        'sport_id'
     ];
 
-    public static function store($request,$id=null){
-        $events = $request->only([
-            'event_name',
-            'match_date',
-            'match_time',
-            'user_id',
-            'venue_id',
-
-            'sport_id'
-        ]);
-
-        $events = self::updateOrCreate(['id'=>$id],$events);
-        return $events;
-    }
+    
 // belongs to user (on user have many events)
     public function user():BelongsTo{
         return $this->belongsTo(User::class);
@@ -45,18 +32,33 @@ class Event extends Model
     public function bookings():HasMany{
         return $this->hasMany(Booking::class);
     }
-    ///////////events belong to many venue********************************
-    public function venue():BelongsToMany{
-        return $this->belongsToMany(Venue::class);
+
+    ///////////events belong to many venue**********************************
+    public function venue():BelongsTo{
+        return $this->belongsTo(Venue::class);
     }
     
-    /// belong to many for event_sport
+    /// belong to many for event_sport**************************************
     public function sports(){
-        return $this->belongsToMany(Sport::class,'event_sports');
+        return $this->belongsToMany(Sport::class,'event_sports')->withTimestamps();
     }
 
-    public function addSport($sportIds)
-    {
-        $this->sports()->sync($sportIds);
+    public static function store($request,$id=null){
+        $sport = $request->only([
+            'event_name',
+            'description',
+            'match_date',
+            'match_time',
+            'user_id',
+            'venue_id',
+        ]);
+
+        $sport = self::updateOrCreate(['id'=>$id],$sport);
+        // create sport using sync
+        $sports = request('sports');
+        $sport->sports()->sync($sports);
+
+        return $sport;
     }
+
 }

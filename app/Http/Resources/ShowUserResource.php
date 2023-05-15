@@ -18,9 +18,9 @@ class ShowUserResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'email'=>$this->email,
-            // 'phone_number'=>$this->phone_number ?? null, // if user don't have phone number display now
-            'bookings'=>$this->bookings ?? null,
-            'events'=>$this->events ?? null,
+            'phone_number'=>$this->phone_number ?? null, // if user don't have phone number display now
+            'bookings'=> BookingResource::collection($this->bookings ?? null),
+            'events'=> EventsResource::collection($this->events ?? null),
         ];
     }
 }

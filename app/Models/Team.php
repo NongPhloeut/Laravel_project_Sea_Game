@@ -15,14 +15,14 @@ class Team extends Model
     protected $fillable = [
         'team_name',
         'description',
-        'event_sport_id'
+        'sport_id'
     ];
 
     public static function store($request,$id=null){
         $teams = $request->only([
             'team_name',
             'description',
-            'event_sport_id'
+            'sport_id'
         ]);
 
         $teams = self::updateOrCreate(['id'=>$id],$teams);
@@ -30,9 +30,7 @@ class Team extends Model
     }
 
     /// belong to one event
-     
-
-    public function eventSport():BelongsToMany{
-        return $this->belongsToMany(EventSport::class);
+    public function sport():BelongsTo{
+        return $this->belongsTo(Sport::class);
     }
 }

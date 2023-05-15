@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('team_name');
             $table->string('description');
 
-            $table->unsignedBigInteger('event_sport_id');
-            $table->foreign('event_sport_id')->references('id')->on('event_sports')->onDelete('cascade');
+            $table->unsignedBigInteger('sport_id');
+            $table->foreign('sport_id')->references('id')->on('sports')->onDelete('cascade');
             $table->timestamps();
         });
     }
