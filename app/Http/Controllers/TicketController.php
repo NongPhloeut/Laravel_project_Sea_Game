@@ -15,7 +15,14 @@ class TicketController extends Controller
     public function index()
     {
         $ticket = Ticket::all();
+        // dd($ticket);
+        // $ticketNumber = request('ticket_number');
+        // $ticket = Ticket::where('ticket_number','like','%'.$ticketNumber.'%')->get();
+        
+
         $ticket = TicketResources::collection($ticket);
+
+
         return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
     }
 
@@ -24,9 +31,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $tickets = Ticket::store($request);
-
-        return response()->json(['Create cuccessfully'=>true,"tickets"=>$tickets],202);
+        //
     }
 
     /**
@@ -35,10 +40,6 @@ class TicketController extends Controller
     public function show(string $id)
     {
         $ticket = Ticket::find($id);
-
-        // if($ticket == null){
-        //     return response()->json(['id not found'=>false],404);
-        // }
 
         $ticket = new ShowTicketResources($ticket);
         return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
@@ -49,9 +50,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $ticket = Ticket::find($request,$id);
-        
-        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
+      //
     }
 
     /**
@@ -59,9 +58,6 @@ class TicketController extends Controller
      */
     public function destroy(string $id)
     {
-        $tickets = Ticket::find($id);
-        $tickets->delete();
-
-        return response()->json(['Create cuccessfully'=>true,"tickets"=>$tickets],202);
+        //
     }
 }

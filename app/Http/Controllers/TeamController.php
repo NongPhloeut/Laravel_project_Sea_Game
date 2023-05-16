@@ -16,6 +16,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
+
         $teams = TeamResource::collection($teams);
 
         return response()->json(['Create cuccessfully'=>true,"teams"=>$teams],202);

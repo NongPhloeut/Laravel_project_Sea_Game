@@ -17,7 +17,12 @@ class SportController extends Controller
     {
         $eventSport = Sport::all();
 
+        // $sportName = request('sport_name');
+        // dd($sportName);
+        // $eventSport = Sport::where('sport_name','like','%'.$sportName.'%')->get();
+        
         $eventSport = SportResource::collection($eventSport);
+        // dd($eventSport);
 
         return response()->json(['Get cuccessfully'=>true,'sport in event'=>$eventSport],202);
     }
@@ -48,7 +53,9 @@ class SportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $sports = Sport::find($request,$id);
+
+        return response()->json(['Update cuccessfully'=>true,'sport'=>$sports],202);
     }
 
     /**
@@ -56,6 +63,9 @@ class SportController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sports = Sport::find($id);
+        $sports->delete();
+
+        return response()->json(['Delete cuccessfully'=>true,'sport'=>$sports],202);
     }
 }

@@ -10,26 +10,6 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'ticket_number',
-        'ticket_price',
-        'event_id',
-        'booking_id',
-    ];
-
-    
-    public static function store($request,$id=null){
-       $tickets = $request->only([
-            'ticket_number',
-            'ticket_price',
-            'event_id',
-            'booking_id',
-       ]);
-
-       $tickets = self::updateOrCreate(['id'=>$id],$tickets);
-       return $tickets;
-    }
-
     public function booking():BelongsTo{
         return $this->belongsTo(Booking::class);
     }

@@ -19,13 +19,19 @@ class Team extends Model
     ];
 
     public static function store($request,$id=null){
+        
         $teams = $request->only([
             'team_name',
             'description',
             'sport_id'
         ]);
-
-        $teams = self::updateOrCreate(['id'=>$id],$teams);
+        if ($id) {
+            $teams = self::updateOrCreate(['id'=>$id],$teams); 
+        } else {
+            $teams = self::create($teams);
+            $id = $teams->id;
+        }
+        
         return $teams;
     }
 
