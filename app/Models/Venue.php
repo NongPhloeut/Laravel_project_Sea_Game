@@ -25,7 +25,7 @@ class Venue extends Model
        $venue = self::updateOrCreate(['id'=>$id],$venue);
        return $venue;
     }
-// one venue cna has many events
+// one venue can have many events
     public function events():HasMany{
         return $this->hasMany(Event::class);
     }

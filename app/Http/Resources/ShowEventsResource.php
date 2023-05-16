@@ -21,9 +21,9 @@ class ShowEventsResource extends JsonResource
             'description' => $this->description,
             'match_date' => $this->match_date,
             'match_time' => $this->match_time,
-            'sports' => SportResource::collection($this->sports),
-            'bookings' => BookingResource::collection($this->bookings),
-            'venue' =>new VenueResources($this->venue),
+            'sports_in_event' => SportResource::collection($this->sports),
+            'event_bookings' => BookingResource::collection($this->bookings),
+            'venue_of_event' => new VenueResources($this->venue),
         ];
     }
 }

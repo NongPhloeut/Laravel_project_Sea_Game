@@ -19,8 +19,8 @@ class UserResource extends JsonResource
             'name'=>$this->name,
             'email'=>$this->email,
             'phone_number'=>$this->phone_number ?? null, // if user don't have phone number display now
-            'bookings'=>$this->bookings ?? null,
-            'events'=>$this->events ?? null,
+            'created_bookings'=>$this->bookings ?? null,
+            'created_events'=>$this->events ?? null,
         ];
     }
 }

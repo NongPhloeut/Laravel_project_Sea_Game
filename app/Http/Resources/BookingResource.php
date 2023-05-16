@@ -15,10 +15,11 @@ class BookingResource extends JsonResource
     public function toArray($request): array
     {
         return [
+            'booking_by_user'=>$this->user->name,
             'booking_id'=>$this->id,
             'booking_date'=>$this->booking_date,
-            'ticketBooking'=>$this->ticketBooking,
-            // 'event'=>$this->eventBooking,
+            'ticket_created'=>$this->ticketBooking,
+            'booking_event'=>$this->event,
         ];
     }
 }

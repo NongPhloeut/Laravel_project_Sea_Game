@@ -38,7 +38,7 @@ class Booking extends Model
     }
 
     /// a event can have multiple booking
-    public function eventBooking():BelongsTo{
+    public function event():BelongsTo{
         return $this->belongsTo(Event::class);
     }
     
