@@ -25,6 +25,7 @@ class Team extends Model
             'description',
             'sport_id'
         ]);
+        
         if ($id) {
             $teams = self::updateOrCreate(['id'=>$id],$teams); 
         } else {

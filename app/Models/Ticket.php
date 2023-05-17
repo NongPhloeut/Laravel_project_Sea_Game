@@ -10,6 +10,11 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ticket_number',
+        'ticket_price',
+    ];
+
     public function booking():BelongsTo{
         return $this->belongsTo(Booking::class);
     }

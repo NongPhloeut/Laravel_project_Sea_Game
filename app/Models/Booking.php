@@ -18,6 +18,8 @@ class Booking extends Model
         'status',
         'user_id',
         'event_id',
+        'ticket_number',
+        'ticket_price',
     ];
 
     public static function store($request,$id=null){

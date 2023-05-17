@@ -31,7 +31,7 @@ class StoreTeamRequest extends FormRequest
         return [
             "team_name"=>"required",
             "description"=>"required",
-            "sport_id"=>"required|unique:teams"
+            "sport_id"=>"required"
         ];
     }
 }

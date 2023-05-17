@@ -33,7 +33,6 @@ class BookingController extends Controller
         $bookings->ticketBooking()->create([
             'ticket_number'=>request('ticket_number'),
             'ticket_price'=>request('ticket_price'),
-            // 'event_id'=>request('event_id'),
         ]);
 
         return response()->json(['Create cuccessfully'=>true,"bookings"=>$bookings],202);
