@@ -16,7 +16,7 @@ class VenueController extends Controller
     {
         $venue = Venue::all();
         $venue = VenueResources::collection($venue);
-        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        return response()->json(['Create successfully'=>true,'venue'=>$venue],202);
         
     }
 
@@ -26,7 +26,7 @@ class VenueController extends Controller
     public function store(Request $request)
     {
         $venue = Venue::store($request);
-        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        return response()->json(['Create successfully'=>true,'venue'=>$venue],202);
     }
 
     /**
@@ -36,7 +36,7 @@ class VenueController extends Controller
     {
         $venue = Venue::find($id);
         $venue = new ShowVenueResources($venue);
-        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        return response()->json(['Create successfully'=>true,'venue'=>$venue],202);
     }
 
     /**
@@ -45,7 +45,7 @@ class VenueController extends Controller
     public function update(Request $request, string $id)
     {
         $venue = Venue::store($request,$id);
-        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        return response()->json(['Create successfully'=>true,'venue'=>$venue],202);
     }
 
     /**
@@ -56,6 +56,6 @@ class VenueController extends Controller
         $venue = Venue::find($id);
         $venue->delete();
 
-        return response()->json(['Create cuccessfully'=>true,'venue'=>$venue],202);
+        return response()->json(['Create successfully'=>true,'venue'=>$venue],202);
     }
 }

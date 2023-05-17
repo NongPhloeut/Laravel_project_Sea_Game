@@ -19,7 +19,7 @@ class TeamController extends Controller
 
         $teams = TeamResource::collection($teams);
 
-        return response()->json(['Create cuccessfully'=>true,"teams"=>$teams],202);
+        return response()->json(['Create successfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -29,7 +29,7 @@ class TeamController extends Controller
     {
         $teams = Team::store($request);
 
-        return response()->json(['Create cuccessfully'=>true,"teams"=>$teams],202);
+        return response()->json(['Create successfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -40,7 +40,7 @@ class TeamController extends Controller
         $teams = Team::find($id);
         $teams = new ShowTeamResource($teams);
 
-        return response()->json(['Show cuccessfully'=>true,"teams"=>$teams],202);
+        return response()->json(['Show successfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -50,7 +50,7 @@ class TeamController extends Controller
     {
         $teams = Team::store($request,$id);
 
-        return response()->json(['Update cuccessfully'=>true,"teams"=>$teams],202);
+        return response()->json(['Update successfully'=>true,"teams"=>$teams],202);
     }
 
     /**
@@ -61,6 +61,6 @@ class TeamController extends Controller
         $teams = Team::find($id);
         $teams->delete();
 
-        return response()->json(['Delete cuccessfully'=>true,"teams"=>$teams],202);
+        return response()->json(['Delete successfully'=>true,"teams"=>$teams],202);
     }
 }

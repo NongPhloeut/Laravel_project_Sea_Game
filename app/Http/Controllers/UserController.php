@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $users = User::all();
         $user = UserResource::collection($users);
-        return response()->json(['Create cuccessfully'=>true,'users'=>$user],202);
+        return response()->json(['Create successfully'=>true,'users'=>$user],202);
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
  
         $users = User::store($request);
        
-        return response()->json(['Gets cuccessfully'=>true,'users'=>$users],202);
+        return response()->json(['Gets successfully'=>true,'users'=>$users],202);
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user = new ShowUserResource($user);
-        return response()->json(['Create cuccessfully'=>true,'data'=>$user],202);
+        return response()->json(['Create successfully'=>true,'data'=>$user],202);
     }
 
     /**
@@ -48,7 +48,7 @@ class UserController extends Controller
     {
         $user = User::store($request,$id);
 
-        return response()->json(['Update cuccessfully'=>true,'data'=>$user],202);
+        return response()->json(['Update successfully'=>true,'data'=>$user],202);
     }
 
     /**
@@ -63,6 +63,6 @@ class UserController extends Controller
         }
 
         $user->delete();
-        return response()->json(['Delete cuccessfully'=>true,'data'=>$user],202);
+        return response()->json(['Delete successfully'=>true,'data'=>$user],202);
     }
 }

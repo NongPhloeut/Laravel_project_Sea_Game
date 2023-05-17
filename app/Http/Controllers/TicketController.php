@@ -23,7 +23,7 @@ class TicketController extends Controller
         $ticket = TicketResources::collection($ticket);
 
 
-        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
+        return response()->json(['Show successfully'=>true,"tickets"=>$ticket],202);
     }
 
     /**
@@ -42,7 +42,7 @@ class TicketController extends Controller
         $ticket = Ticket::find($id);
 
         $ticket = new ShowTicketResources($ticket);
-        return response()->json(['Show cuccessfully'=>true,"tickets"=>$ticket],202);
+        return response()->json(['Show successfully'=>true,"tickets"=>$ticket],202);
     }
 
     /**

@@ -20,7 +20,7 @@ class EventsController extends Controller
 
         $events = EventsResource::collection($events);
 
-        return response()->json(['Get cuccessfully'=>true,"events"=>$events],202);
+        return response()->json(['Get successfully'=>true,"events"=>$events],202);
 
     }
 
@@ -31,7 +31,7 @@ class EventsController extends Controller
     {
         $events = Event::store($request);
 
-        return response()->json(['Create cuccessfully'=>true,"events"=>$events],202);
+        return response()->json(['Create successfully'=>true,"events"=>$events],202);
     }
 
     /**
@@ -43,7 +43,7 @@ class EventsController extends Controller
 
         $events = new ShowEventsResource($events);
 
-        return response()->json(['Get cuccessfully'=>true,"events"=>$events],202);
+        return response()->json(['Get successfully'=>true,"events"=>$events],202);
     }
 
     /**
@@ -53,7 +53,7 @@ class EventsController extends Controller
     {
         $events = Event::store($request,$id);
 
-        return response()->json(['Create cuccessfully'=>true,"event_sports"=>$events],202);
+        return response()->json(['Create successfully'=>true,"event_sports"=>$events],202);
     }
 
     /**
@@ -65,7 +65,7 @@ class EventsController extends Controller
 
         $events->delete();
         
-        return response()->json(['Delete cuccessfully'=>true,"events"=>$events],202); 
+        return response()->json(['Delete successfully'=>true,"events"=>$events],202); 
     }
 
 }

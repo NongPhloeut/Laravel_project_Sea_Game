@@ -18,7 +18,7 @@ class BookingController extends Controller
         $bookings = Booking::all();
         $bookings = BookingResource::collection($bookings);
 
-        return response()->json(['Get bookings cuccessfully'=>true,'Bookings'=>$bookings],202);
+        return response()->json(['Get bookings successfully'=>true,'Bookings'=>$bookings],202);
 
     }
 
@@ -35,7 +35,7 @@ class BookingController extends Controller
             'ticket_price'=>request('ticket_price'),
         ]);
 
-        return response()->json(['Create cuccessfully'=>true,"bookings"=>$bookings],202);
+        return response()->json(['Create successfully'=>true,"bookings"=>$bookings],202);
     }
 
     /**
@@ -47,7 +47,7 @@ class BookingController extends Controller
 
         $booking = new ShowBookingResource($booking);
 
-        return response()->json(['Show cuccessfully'=>true,"bookings"=>$booking],202);
+        return response()->json(['Show successfully'=>true,"bookings"=>$booking],202);
     }
 
     /**
@@ -56,7 +56,7 @@ class BookingController extends Controller
     public function update(Request $request, string $id)
     {
         $bookings = Booking::store($request,$id);
-        return response()->json(['Show cuccessfully'=>true,"bookings"=>$bookings],202);
+        return response()->json(['Show successfully'=>true,"bookings"=>$bookings],202);
     }
 
     /**
@@ -67,6 +67,6 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->delete();
 
-        return response()->json(['Delete cuccessfully'=>true,"bookings"=>$booking],202);
+        return response()->json(['Delete successfully'=>true,"bookings"=>$booking],202);
     }
 }

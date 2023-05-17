@@ -33,7 +33,7 @@ class SportController extends Controller
     public function store(StoreSportRquest $request)
     {
         $sports = Sport::store($request);
-        return response()->json(['Create cuccessfully'=>true,"sport"=>$sports],202);
+        return response()->json(['Create successfully'=>true,"sport"=>$sports],202);
     }
 
     /**
@@ -45,7 +45,7 @@ class SportController extends Controller
 
         $eventSport = new ShowSportResource($eventSport);
 
-        return response()->json(['Get sports cuccessfully'=>true,'sport in event'=>$eventSport],202);
+        return response()->json(['Get sports successfully'=>true,'sport in event'=>$eventSport],202);
     }
 
     /**
@@ -55,7 +55,7 @@ class SportController extends Controller
     {
         $sports = Sport::find($request,$id);
 
-        return response()->json(['Update cuccessfully'=>true,'sport'=>$sports],202);
+        return response()->json(['Update successfully'=>true,'sport'=>$sports],202);
     }
 
     /**
@@ -66,6 +66,6 @@ class SportController extends Controller
         $sports = Sport::find($id);
         $sports->delete();
 
-        return response()->json(['Delete cuccessfully'=>true,'sport'=>$sports],202);
+        return response()->json(['Delete successfully'=>true,'sport'=>$sports],202);
     }
 }
